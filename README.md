@@ -99,6 +99,7 @@ and we are most happy for filed issues or pull requests.
 * ``util_template_use_cow``: Whether to add ``{{ ansible_managed }}`` or a fancy cow to templates (boolean, default: ``true``)
 * ``util_package_list_custom``: Custom list of packages to be installed (list, default: ``[]``)
 * ``util_init_system``: Allow to override init system configuration to be used for service templates (string, default: ``undefined``)
+* ``util_path_to_lib_role``: configure path to lib-role, which can get configured via silpion.lib role (string, default: ``{{ lib_roles_path }}``)
 
 ### util_init_system
 
@@ -122,6 +123,26 @@ The following values are supported (and therefor required):
 - ``systemd``
 - ``sysvinit``
 - ``upstart``
+
+#### init system configuration
+
+Init systems today have different requirements when it comes to service
+deployment, e.g. SysV requires init scripts to be executable while
+upstart and Systemd discourage this.
+
+util provides the following additional facts for service configuration.
+
+* ``ansible_local.util.init.service_dir``
+* ``ansible_local.util.init.service_mode``
+
+These can be configured/hardcoded with the following variables and are
+configured dynamicallly otherwise, e.g.
+
+- systemd: /etc/systemd/system with mode 644
+- sysvinit: /etc/init.d with mode 755
+
+* ``util_init_service_dir``: Override service directory
+* ``util_init_service_mode``: Override service file mode
 
 ### action modules
 
@@ -200,6 +221,8 @@ The table below omits this prefix.
 | ``general.package_state``         | Desired package state                          | ``util_package_state_{{ ansible_os_family}}`` | always                                |
 | ``general.persistent_data_path``  | Persistent data path                           | ``util_persistent_data_path_remote``          | always                                |
 | ``init.system``                   | Init system type                               | ``util_init_system``                          | always                                |
+| ``init.service_dir``              | Init system service files directory            | ``util_init_service_dir``                     | always                                |
+| ``init.service_mode``             | Init system service files mode                 | ``util_init_service_mode``                    | always                                |
 | ``modules.get_url.timeout``       | Timeout for the ``get_url`` module             | ``util_module_get_url_timeout``               | always                                |
 | ``modules.service.manage``        | Wether the service module may be used          | ``util_module_service_manage``                | always                                |
 | ``modules.service.allow_reload``  | Wether the service module may reload services  | ``util_module_service_allow_reload``          | always                                |

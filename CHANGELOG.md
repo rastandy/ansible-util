@@ -1,3 +1,46 @@
+# 2.0.5
+
+Alvaro Aleman (1):
+
+* Install policycoreutils-python on EL
+
+Anja Siek (2):
+
+* use generator updates
+* use variable instead of hardcoded
+
+Mark Kusch (3):
+
+* Make tests os-family specific
+* Have spec tests be less repetitive
+* Fixup spec tests for role\_version
+
+# 2.0.4
+
+Anja Siek (1):
+
+* need default empty list to fix warning
+
+Georg Hopp (11):
+
+* Disable requiretty in SUDO if pipelining is requested.
+* Fix indentation
+* fix when condition
+* Register custom var for pipelining as we overwrite ansible\_ssh\_pipelining for that task.
+* Style cleanup
+* Disable requiretty in SUDO if pipelining is requested.
+* Fix indentation
+* fix when condition
+* Register custom var for pipelining as we overwrite ansible\_ssh\_pipelining for that task.
+* Style cleanup
+* add tag
+
+Mark Kusch (3):
+
+* Fix deprecation warning and integrate service management configuration vars
+* Add service management configuration vars to local facts
+* Add documentation for service configuration facts
+
 # 2.0.3
 
 Mark Kusch (1):
